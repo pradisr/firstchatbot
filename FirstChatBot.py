@@ -29,19 +29,19 @@ def makeResponse(req):
     parameters = result.get("parameters")
     city = parameters.get("geo-city")
     date = parameters.get("date")
-    r = requests.get('http://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid=b6907d289e10d714a6e88b30761fae22')
+    r=requests.get('http://api.openweathermap.org/data/2.5/forecast?q='+city+'&appid=b6907d289e10d714a6e88b30761fae22')
     json_object = r.json()
-    weather = json_object['list']
+    weather=json_object['list']
     for i in range(0,30):
         if date in weather[i]['dt_txt']:
-          condition = weather[i]['weather'][0]['description']
+          condition=weather[i]['weather'][0]['description']
           break
                  
     speech = "Weather forecast for " +city+ " for " +date+ " is " +condition
     return {      
     "speech": speech,
     "displayText": speech,
-    "source": "apiai-weather-webhook"
+    "source": "apiai-weather-FirstChatBot"
     }
 
 if __name__ == '__main__':
